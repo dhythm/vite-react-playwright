@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "e2e:all": "playwright test",
+    "e2e:chromium": "playwright test --project=chromium"
   },
   "dependencies": {
     "react": "^18.2.0",
