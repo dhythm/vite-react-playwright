@@ -15,6 +15,13 @@ npm init playwright@latest
 ✔ Add a GitHub Actions workflow? (y/N) · false
 ```
 
+## Additional settings (Component testing)
+
+```sh
+npm init playwright@latest -- --ct
+npm run test-ct
+```
+
 ## Getting Started
 
 ```sh

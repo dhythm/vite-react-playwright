@@ -8,13 +8,15 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "e2e:all": "playwright test",
-    "e2e:chromium": "playwright test --project=chromium"
+    "e2e:chromium": "playwright test --project=chromium",
+    "test-ct": "playwright test -c playwright-ct.config.ts"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@playwright/experimental-ct-react": "^1.28.0",
     "@playwright/test": "^1.26.1",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
