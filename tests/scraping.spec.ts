@@ -1,5 +1,6 @@
 import { test, expect, chromium } from "@playwright/test";
 // import * as path from "path";
+import fs from "fs";
 
 test.use({
   screenshot: "only-on-failure",
@@ -39,16 +40,28 @@ test.use({
   },
 });
 
-test.setTimeout(120_000);
+test.setTimeout(30_000);
 
 test("scraping a page", async ({ page, browser }) => {
-  await page.goto("https://yahoo.co.jp");
+  await page.goto("https://scrapeme.live/shop/");
+  const product = await page.$$eval("li.product", (all_items) => {});
+  console.log({ product });
   await page
-    .getByRole("heading", { name: "Yahoo! JAPAN" })
-    .getByRole("link", { name: "Yahoo! JAPAN" })
-    .isVisible();
-  await page.getByRole("link", { name: "画像で検索" }).click();
-  await page.getByRole("searchbox").fill("cat");
-  await page.getByRole("button", { name: "検索" }).click();
+    .getByRole("img")
+    .first()
+    .screenshot({ path: "./test-results/screenshots/" });
+  await page.pause();
+  // const [download] = await Promise.all([
+  //   page.waitForEvent("download"),
+  //   page.getByRole("figure").first().locator("a").click(),
+  // ]);
+  // const suggestedFileName = download.suggestedFilename();
+  // const filePath = "download/" + suggestedFileName;
+  // await download.saveAs(filePath);
+  // expect(fs.existsSync(filePath)).toBeTruthy();
+  // await page
+  //   .locator("#isr section")
+  //   .getByRole("img", { name: "猫の日 - Wikipedia" })
+  //   .screenshot({ path: "./test-results/screenshots/cat.png" });
   await browser.close();
 });
